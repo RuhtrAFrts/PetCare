@@ -1,12 +1,41 @@
-# PetCare — Cadastro de Tutor e Pet
+# 🐾 PetCare Hub — Sistema de Gestão para Pet Shop
 
-Projeto prático da Aula 09 — Arquitetura em Camadas e MVC.
+## 📌 Objetivo
 
-## O que foi desenvolvido
+Transformar o gerenciamento de serviços de pet shop em um backlog ágil e rastreável no GitHub, com mapeamento de personas, User Stories e critérios de aceitação.
 
-Foi escolhida a User Story **US01 — Cadastro de Cliente e Pet**. A API recebe os dados de um tutor e de seu animal, verifica se o CPF já está cadastrado e, se estiver tudo certo, salva os dois registros relacionados.
+O projeto também contempla a implementação gradual das funcionalidades propostas, utilizando Java e Spring Boot.
 
-## Organização do projeto
+## 👥 Perfis de Usuário (Personas)
+
+1. **Tutor (Cliente):** Busca agendar banhos/consultas e acompanhar o histórico do seu animal de estimação.
+2. **Atendente (Recepção):** Organiza a agenda do estabelecimento, confirma consultas e notifica os tutores.
+3. **Profissional (Vet/Tosador):** Executa os serviços, altera o status do atendimento e registra diagnósticos/prontuários.
+
+## 🚀 Backlog do Produto (User Stories)
+
+O repositório conta com **8 User Stories** cadastradas no [GitHub Issues](../../issues) e organizadas no quadro Kanban:
+
+- **US01:** Cadastro de Cliente e Pet (Alta Prioridade)
+- **US02:** Agendamento de Serviços (Alta Prioridade)
+- **US03:** Histórico de Atendimentos do Pet (Média Prioridade)
+- **US04:** Visualização e Filtro da Agenda (Alta Prioridade)
+- **US05:** Reagendamento e Cancelamento (Média Prioridade)
+- **US06:** Registro de Prontuário Veterinário (Média Prioridade)
+- **US07:** Atualização de Status do Banho/Tosa (Alta Prioridade)
+- **US08:** Notificação de Retirada (Baixa Prioridade)
+
+## 📋 Quadro de Acompanhamento
+
+Acompanhe o andamento das tarefas na aba **Projects** do repositório ou pelo quadro Kanban do GitHub.
+
+---
+
+## 💻 Implementação — US01: Cadastro de Cliente e Pet
+
+Foi implementada a funcionalidade de cadastro de tutor e pet, utilizando arquitetura em camadas e o padrão MVC.
+
+### Organização do projeto
 
 ```text
 src/main/java/br/com/petcare/
@@ -19,7 +48,7 @@ src/main/java/br/com/petcare/
 └── PetCareApplication.java
 ```
 
-## Fluxo da funcionalidade
+### Fluxo da funcionalidade
 
 ```text
 Requisição HTTP
@@ -35,68 +64,7 @@ TutorRepository      PetRepository
       |                  |
       +--------+---------+
                v
-          Banco H2
+            Banco H2
 ```
 
-O Controller recebe os dados e chama o Service. A regra para impedir CPF repetido fica no Service. Os Repositories fazem a comunicação com o banco. Assim, o Controller não concentra a lógica de negócio.
-
-## Tecnologias
-
-- Java 17
-- Spring Boot
-- Spring Web
-- Spring Data JPA
-- Bean Validation
-- H2 (banco em memória)
-- JUnit e Mockito para o teste unitário
-
-## Como executar
-
-É necessário ter Java 17 ou superior e Maven instalado.
-
-1. Abra esta pasta no VS Code ou IntelliJ.
-2. No terminal, dentro da pasta do projeto, execute:
-
-   ```bash
-   mvn spring-boot:run
-   ```
-
-3. A API ficará disponível em `http://localhost:8080`.
-
-## Como testar o cadastro
-
-Envie uma requisição `POST` para:
-
-`http://localhost:8080/api/cadastros/tutor-pet`
-
-Com o corpo JSON:
-
-```json
-{
-  "nomeTutor": "Ana Souza",
-  "cpf": "12345678901",
-  "telefone": "34999999999",
-  "nomePet": "Rex",
-  "especie": "Cachorro",
-  "raca": "SRD",
-  "idade": 3
-}
-```
-
-Se o cadastro for realizado, a API retorna HTTP 201 com os identificadores do tutor e do pet. Se o CPF já existir, retorna HTTP 409 com uma mensagem de erro.
-
-## Teste automatizado
-
-Foi criado um teste unitário para conferir o caso de CPF duplicado. Ele verifica se a exceção é lançada e se nenhum dos dois registros é salvo.
-
-Para executar os testes:
-
-```bash
-mvn test
-```
-
-## Relação com a atividade
-
-A entrega contém a User Story escolhida, o fluxo Controller → Service → Repository, a estrutura de pastas, a implementação da funcionalidade, um teste unitário e este README com o diagrama da arquitetura.
-
-**Observação:** os commits e a Pull Request devem ser registrados no GitHub pelo integrante que possui acesso de escrita ao repositório. Os nomes de commits e a descrição sugerida da PR podem ser preparados a partir das etapas do desenvolvimento, mas não devem ser apresentados como ações já realizadas.
+O Controller recebe os dados
